@@ -3,61 +3,92 @@ import time
 import webbrowser
 import sys
 import os
+import socket
 from waitress import serve
 from app import app
 
+# Configuration
+APP_NAME = "AmanaERP"
+DEFAULT_PORT = 5000
+HOST = "127.0.0.1"
 
-def open_browser():
-    """Open browser after server starts"""
-    time.sleep(2.0)  # Give server more time to start
-    try:
-        webbrowser.open("http://127.0.0.1:5000")
-        print("✓ Browser opened successfully")
-    except Exception as e:
-        print(f"✗ Failed to open browser: {e}")
+def get_appdata_path():
+    """Returns the application's data path in AppData\Local."""
+    return os.path.join(os.environ.get('LOCALAPPDATA', ''), APP_NAME)
 
+def find_free_port(start_port):
+    """Finds an available TCP port."""
+    for port in range(start_port, start_port + 20):
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.bind((HOST, port))
+            return port
+        except OSError:
+            pass  # Port is in use, try next.
+    print(f"FATAL: Could not find a free port starting from {start_port}.", file=sys.stderr)
+    sys.exit(1)
+
+def get_database_path():
+    """Returns the full path to the database file."""
+    app_data_dir = get_appdata_path()
+    data_dir = os.path.join(app_data_dir, "data")
+    return os.path.join(data_dir, "ha_business.db")
 
 def check_first_run():
-    """Check if this is first run (no database exists)"""
-    db_path = os.path.join(os.getcwd(), "instance", "ha_business.db")
-    return not os.path.exists(db_path)
+    """Checks if the database exists to determine if it's a first run."""
+    return not os.path.exists(get_database_path())
 
+def ensure_data_directory_exists():
+    """Creates the data directory in AppData if it doesn't exist."""
+    db_path = get_database_path()
+    data_dir = os.path.dirname(db_path)
+    if not os.path.exists(data_dir):
+        try:
+            os.makedirs(data_dir)
+        except OSError as e:
+            print(f"FATAL: Could not create data directory at {data_dir}: {e}", file=sys.stderr)
+            sys.exit(1)
+
+def open_browser(url):
+    """Opens the web browser in a separate thread."""
+    def _open():
+        time.sleep(1.5)  # Give server time to start
+        try:
+            webbrowser.open(url)
+        except Exception as e:
+            print(f"ERROR: Failed to open browser: {e}", file=sys.stderr)
+            print(f"Please manually open your browser to: {url}")
+    threading.Thread(target=_open, daemon=True).start()
 
 if __name__ == "__main__":
-    print("=" * 50)
-    print("Starting Amana ERP...")
-    print("=" * 50)
+    if sys.platform.startswith('win'):
+        import multiprocessing
+        multiprocessing.freeze_support()
+
+    ensure_data_directory_exists()
+
+    # Set the database URI in the app's configuration
+    database_path = get_database_path()
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{database_path}'
     
-    # Check if first run
-    if check_first_run():
-        print("🔧 First run detected - Setup wizard will be available")
-        target_url = "http://127.0.0.1:5000/setup"
-    else:
-        target_url = "http://127.0.0.1:5000/login"
-    
-    # Start browser in separate thread
-    def delayed_browser_open():
-        time.sleep(3.0)  # Give more time for server to start
-        try:
-            webbrowser.open(target_url)
-            print(f"✓ Browser opened to {target_url}")
-        except Exception as e:
-            print(f"✗ Failed to open browser: {e}")
-            print(f"Please manually open: {target_url}")
-    
-    threading.Thread(target=delayed_browser_open, daemon=True).start()
-    
-    # Start server
-    print("🚀 Starting server on http://127.0.0.1:5000")
-    print("Press Ctrl+C to stop the server")
-    print("=" * 50)
-    
+    # From now on, SQLAlchemy will use the database in AppData
+
+    port = find_free_port(DEFAULT_PORT)
+    base_url = f"http://{HOST}:{port}"
+
+    target_url = f"{base_url}/setup" if check_first_run() else f"{base_url}/login"
+
+    open_browser(target_url)
+
+    print(f"--- Starting Amana ERP ---")
+    print(f"Server running on {base_url}")
+    print(f"Database located at: {database_path}")
+    print("Close this window to stop the application.")
+
     try:
-        serve(app, host="127.0.0.1", port=5000)
-    except KeyboardInterrupt:
-        print("\n👋 Server stopped by user")
+        serve(app, host=HOST, port=port, threads=8)
     except Exception as e:
-        print(f"\n❌ Server error: {e}")
-        print("Press any key to exit...")
-        input()
+        print(f"FATAL: Server failed to start: {e}", file=sys.stderr)
+        # In a real GUI app, this would be a message box.
+        input("Press Enter to exit...")
         sys.exit(1)
