@@ -1,0 +1,390 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Welcome Header -->
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mb-0">
+                        <i class="fas fa-tachometer-alt"></i> 
+                        {% if current_user.company %}
+                            {{ current_user.company.company_name }} Dashboard
+                        {% else %}
+                            Dashboard
+                        {% endif %}
+                    </h4>
+                    <p class="text-muted">Welcome, {{ current_user.full_name }}! Your role: <strong>{{ current_user.role }}</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards Row -->
+        <div class="row mb-4">
+            <!-- Today's Sales Card -->
+            <div class="col-md-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="card-title mb-0">
+                                <i class="fas fa-shopping-cart text-success"></i>
+                                Today's Sales
+                            </h6>
+                            {% if user_role != 'Store Keeper' %}
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-calendar-alt"></i> Last 7 Days
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" onclick="updateSalesPeriod('today')">Today</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateSalesPeriod('week')">This Week</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateSalesPeriod('month')">This Month</a></li>
+                                </ul>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="text-center">
+                            <h2 class="mb-0">{{ sales_count }}</h2>
+                            <p class="text-muted">Transactions</p>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-success">{{ sales_amount | etb }}</h3>
+                            <p class="text-muted">ETB Amount</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Today's Expenses Card -->
+            {% if user_role in ['Admin', 'Accountant'] %}
+            <div class="col-md-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="card-title mb-0">
+                                <i class="fas fa-money-bill-wave text-danger"></i>
+                                Today's Expenses
+                            </h6>
+                        </div>
+                        <div class="text-center">
+                            <h2 class="mb-0">{{ todays_expenses|length if todays_expenses else 0 }}</h2>
+                            <p class="text-muted">Transactions</p>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-danger">{{ expense_amount | etb }}</h3>
+                            <p class="text-muted">ETB Amount</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- This Week's Commission Card -->
+            {% if user_role in ['Admin', 'Accountant'] %}
+            <div class="col-md-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-percentage text-info"></i>
+                            This Week's Commission
+                        </h6>
+                        <div class="text-center">
+                            <h2 class="mb-0">{{ commission_amount | etb }}</h2>
+                            <p class="text-muted">ETB Amount</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Quick Profit/Loss Card -->
+            {% if user_role in ['Admin', 'Accountant', 'Sales Person'] %}
+            <div class="col-md-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-chart-line text-primary"></i>
+                            Quick Profit/Loss
+                        </h6>
+                        <div class="text-center">
+                            <h2 class="mb-0 {% if quick_profit >= 0 %}text-success{% else %}text-danger{% endif %}">
+                                {{ quick_profit | etb }}
+                            </h2>
+                            <p class="text-muted">ETB Amount</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row">
+            <!-- Sales Trend Chart -->
+            {% if user_role != 'Store Keeper' %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h6><i class="fas fa-chart-line"></i> Sales Trend (Last 7 Days)</h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="salesTrendChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Revenue vs Expenses Chart -->
+            {% if user_role in ['Admin', 'Accountant'] %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h6><i class="fas fa-chart-bar"></i> Monthly Revenue vs Expenses (6 Months)</h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="revenueExpensesChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Tax Breakdown Chart -->
+            {% if user_role in ['Admin', 'Accountant'] %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h6><i class="fas fa-chart-pie"></i> Tax Breakdown</h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="taxBreakdownChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Expenses by Category Chart -->
+            {% if user_role in ['Admin', 'Accountant'] %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h6><i class="fas fa-chart-pie"></i> Expenses by Category</h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="expensesCategoryChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Search Stock Box for Sales Person -->
+{% if user_role == 'Sales Person' %}
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h6><i class="fas fa-search"></i> Search Stock</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" id="stockSearch" class="form-control" placeholder="Search by Product ID, Item, or Brand..." onkeyup="searchStock()">
+                    </div>
+                    <div class="col-md-4">
+                        <select id="searchType" class="form-select" onchange="searchStock()">
+                            <option value="all">All Fields</option>
+                            <option value="product_id">Product ID</option>
+                            <option value="item">Item</option>
+                            <option value="brand">Brand</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" onclick="searchStock()">Search</button>
+                    </div>
+                </div>
+                <div id="searchResults" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script>
+// Sales trend chart
+const salesTrendCtx = document.getElementById('salesTrendChart');
+if (salesTrendCtx) {
+    new Chart(salesTrendCtx, {
+        type: 'line',
+        data: {
+            labels: {{ chart_data.sales_trend | map(attribute='date') | list | tojson }},
+            datasets: [{
+                label: 'Sales Amount',
+                data: {{ chart_data.sales_trend | map(attribute='amount') | list | tojson }},
+                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+}
+
+// Revenue vs Expenses chart
+const revenueExpensesCtx = document.getElementById('revenueExpensesChart');
+if (revenueExpensesCtx) {
+    new Chart(revenueExpensesCtx, {
+        type: 'bar',
+        data: {
+            labels: {{ chart_data.monthly_sales | map(attribute='month') | list | tojson }},
+            datasets: [{
+                label: 'Revenue',
+                data: {{ chart_data.monthly_sales | map(attribute='amount') | list | tojson }},
+                backgroundColor: 'rgba(40, 167, 69, 0.8)',
+            }, {
+                label: 'Expenses',
+                data: {{ chart_data.monthly_expenses | map(attribute='amount') | list | tojson }},
+                backgroundColor: 'rgba(255, 99, 132, 0.8)',
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+}
+
+// Tax breakdown chart
+const taxBreakdownCtx = document.getElementById('taxBreakdownChart');
+if (taxBreakdownCtx) {
+    new Chart(taxBreakdownCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['VAT (15%)', 'Profit Tax', 'Net Profit'],
+            datasets: [{
+                data: [
+                    {{ chart_data.tax.vat if chart_data.tax else 0 }},
+                    {{ chart_data.tax.profit_tax if chart_data.tax else 0 }},
+                    {{ chart_data.tax.net_profit if chart_data.tax else 0 }}
+                ],
+                backgroundColor: [
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(75, 192, 192, 0.8)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                }
+            }
+        }
+    });
+}
+
+// Expenses by category chart
+const expensesCategoryCtx = document.getElementById('expensesCategoryChart');
+if (expensesCategoryCtx) {
+    new Chart(expensesCategoryCtx, {
+        type: 'pie',
+        data: {
+            labels: {{ chart_data.monthly_expenses | map(attribute='month') | list | tojson }},
+            datasets: [{
+                data: {{ chart_data.monthly_expenses | map(attribute='amount') | list | tojson }},
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                }
+            }
+        }
+    });
+}
+
+// Search functionality for Sales Person
+function searchStock() {
+    const searchTerm = document.getElementById('stockSearch').value.toLowerCase();
+    const searchType = document.getElementById('searchType').value;
+    const resultsDiv = document.getElementById('searchResults');
+    
+    if (searchTerm.length < 2) {
+        resultsDiv.innerHTML = '<p class="text-muted">Please enter at least 2 characters to search.</p>';
+        return;
+    }
+    
+    // Simulate search results (in real app, this would be an API call)
+    const mockResults = [
+        {inventory_no: 'INV001', item: 'Suit', brand: 'Armani', status: 'No'},
+        {inventory_no: 'INV002', item: 'Coat', brand: 'Boss', status: 'No'},
+        {inventory_no: 'INV003', item: 'Shirt', brand: 'Nike', status: 'No'}
+    ];
+    
+    const filteredResults = mockResults.filter(item => {
+        if (searchType === 'all' || searchType === 'product_id') {
+            return item.inventory_no.toLowerCase().includes(searchTerm);
+        } else if (searchType === 'item') {
+            return item.item.toLowerCase().includes(searchTerm);
+        } else if (searchType === 'brand') {
+            return item.brand.toLowerCase().includes(searchTerm);
+        }
+        return false;
+    });
+    
+    let html = '<div class="table-responsive"><table class="table table-striped"><thead class="table-dark"><tr><th>Product ID</th><th>Item</th><th>Brand</th><th>Status</th></tr></thead><tbody>';
+    
+    if (filteredResults.length === 0) {
+        html += '<tr><td colspan="4" class="text-center text-muted">No items found</td></tr>';
+    } else {
+        filteredResults.forEach(item => {
+            const statusBadge = item.status === 'No' ? 
+                '<span class="badge bg-secondary">Available</span>' : 
+                '<span class="badge bg-success">In Stock</span>';
+            html += `<tr>
+                <td><code>${item.inventory_no}</code></td>
+                <td>${item.item}</td>
+                <td>${item.brand}</td>
+                <td>${statusBadge}</td>
+            </tr>`;
+        });
+    }
+    
+    html += '</tbody></table></div>';
+    resultsDiv.innerHTML = html;
+}
+
+// Sales period selection
+function updateSalesPeriod(period) {
+    // In real app, this would update the chart data via API
+    console.log('Updating sales period to:', period);
+    // For demo, just show an alert
+    alert(`Sales period updated to: ${period}`);
+}
+</script>
+{% endblock %}

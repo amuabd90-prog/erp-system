@@ -1,0 +1,10 @@
+Flask
+Flask-Login
+Flask-SQLAlchemy
+Flask-WTF
+waitress
+python-dateutil
+pandas
+openpyxl
+reportlab
+pyinstaller

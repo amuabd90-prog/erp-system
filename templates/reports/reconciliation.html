@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Inventory Reconciliation</h4>
+<form method="post" action="{{ url_for('reconciliation.create_row') }}" class="card p-3 mb-3">
+    {{ form.hidden_tag() }}
+    <div class="row g-2">
+        <div class="col">{{ form.date(class="form-control") }}</div>
+        <div class="col">{{ form.item(class="form-control", placeholder="Item") }}</div>
+        <div class="col">{{ form.physical_count(class="form-control", placeholder="Physical Count") }}</div>
+    </div>
+    <button class="btn btn-primary mt-2">Save</button>
+</form>
+<div class="card p-2 mb-3">
+    <strong>Live System Snapshot</strong>
+    <div class="small text-muted">Store + Inventory counts by item</div>
+    <ul class="mb-0">
+        {% for item, counts in seed.items() %}
+        <li>{{ item }}: Store {{ counts.store }}, Inventory {{ counts.inventory }}, Total {{ counts.store + counts.inventory }}</li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="table-responsive"><table class="table js-data-table"><tr><th>Date</th><th>Item</th><th>Store</th><th>Inventory</th><th>System</th><th>Physical</th><th>Difference</th></tr>{% for r in rows %}<tr><td>{{r.date|et_date}}</td><td>{{r.item}}</td><td>{{r.store_count}}</td><td>{{r.inventory_count}}</td><td>{{r.total_system}}</td><td>{{r.physical_count}}</td><td>{{r.difference}}</td></tr>{% endfor %}</table></div>
+{% endblock %}

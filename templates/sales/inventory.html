@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Showroom Inventory (Read Only)</h4>
+    <div class="btn-group">
+        <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('sales.sales_page') }}">Sales</a>
+        <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('sales.inventory_in_page') }}">Inventory In</a>
+        <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('sales.after_sale_page') }}">After Sale</a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped js-data-table">
+        <thead><tr><th>Product ID</th><th>Item</th><th>Brand</th><th>Color</th><th>Size</th><th>Pieces</th><th>Price</th><th>Status</th></tr></thead>
+        <tbody>
+        {% for r in rows %}
+        <tr>
+            <td>{{ r.inv_no }}</td><td>{{ r.item }}</td><td>{{ r.brand }}</td><td>{{ r.color }}</td><td>{{ r.size }}</td><td>{{ r.pieces }}</td><td>{{ r.price|etb }}</td>
+            <td><span class="badge {{ 'text-bg-success' if r.status == 'Yes' else 'text-bg-danger' }}">{{ '1 = Yes' if r.status == 'Yes' else '2 = No' }}</span></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
