@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Expenses & Commission</h4>
+</div>
+<form method="post" action="{{ url_for('expenses.update_expense', expense_id=editing.id) if editing else url_for('expenses.create_expense') }}" class="card p-3 mb-3">
+    {{ form.hidden_tag() }}
+    <div class="row g-2">
+        <div class="col-md-2">{{ form.date(class="form-control") }}</div>
+        <div class="col-md-2">{{ form.amount(class="form-control", placeholder="Amount") }}</div>
+        <div class="col-md-2">{{ form.reason(class="form-control", placeholder="Reason") }}</div>
+        <div class="col-md-2">{{ form.reference_no(class="form-control", placeholder="Reference No") }}</div>
+        <div class="col-md-2">{{ form.account_number(class="form-control", placeholder="Account Number") }}</div>
+        <div class="col-md-2">{{ form.status(class="form-select") }}</div>
+    </div>
+    <div class="row g-2 mt-2">
+        <div class="col-md-4">{{ form.payed_by(class="form-control", placeholder="Payed By") }}</div>
+    </div>
+    <div class="mt-2 d-flex gap-2">
+        <button class="btn btn-primary">{{ "Update Expense" if editing else "Save Expense" }}</button>
+        {% if editing %}
+        <a class="btn btn-outline-secondary" href="{{ url_for('expenses.index') }}">Cancel Edit</a>
+        {% endif %}
+    </div>
+</form>
+<form method="post" action="{{ url_for('expenses.recalculate_commission') }}">
+    <button class="btn btn-warning mb-3">Recalculate Weekly Commission</button>
+</form>
+
+<h6>Expenses</h6>
+<div class="table-responsive">
+    <table class="table table-striped js-data-table">
+        <thead><tr><th>Date</th><th>Amount</th><th>Reason</th><th>Reference</th><th>Payed By</th><th>Account Number</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+        {% for e in expense_rows %}
+        <tr>
+            <td>{{ e.date|et_date }}</td>
+            <td>{{ e.amount|etb }}</td>
+            <td>{{ e.reason }}</td>
+            <td>{{ e.reference_no }}</td>
+            <td>{{ e.payed_by }}</td>
+            <td>{{ e.account_number }}</td>
+            <td><span class="badge {{ 'text-bg-success' if e.status == '1' else 'text-bg-danger' }}">{{ '1 = Yes' if e.status == '1' else '2 = No' }}</span></td>
+            <td class="d-flex gap-1">
+                <a class="btn btn-sm btn-outline-primary" href="{{ url_for('expenses.edit_expense', expense_id=e.id) }}">Edit</a>
+                <form method="post" action="{{ url_for('expenses.delete_expense', expense_id=e.id) }}" onsubmit="return confirm('Delete expense?')"><button class="btn btn-sm btn-danger">Delete</button></form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h6 class="mt-4">Weekly Commission</h6>
+<div class="table-responsive">
+    <table class="table table-bordered js-data-table">
+        <thead><tr><th>Week</th><th>Total Sales</th><th>Suits</th><th>Coats</th><th>1%</th><th>Suit Bonus</th><th>Coat Bonus</th><th>Total Commission</th></tr></thead>
+        <tbody>
+        {% for c in commission_rows %}
+        <tr>
+            <td>{{ c.week_start|et_date }} - {{ c.week_end|et_date }}</td>
+            <td>{{ c.total_sales|etb }}</td>
+            <td>{{ c.suits_sold }}</td>
+            <td>{{ c.coats_sold }}</td>
+            <td>{{ c.sale_bonus_1pct|etb }}</td>
+            <td>{{ c.suit_bonus|etb }}</td>
+            <td>{{ c.coat_bonus|etb }}</td>
+            <td>{{ c.total_commission|etb }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Sales</h4>
+    <div class="btn-group">
+        <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('sales.inventory_in_page') }}">Inventory In</a>
+        <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('sales.inventory_page') }}">Inventory</a>
+        <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('sales.after_sale_page') }}">After Sale</a>
+    </div>
+</div>
+
+<form method="post" action="{{ url_for('sales.update_sale', product_id=editing.product_id) if editing else url_for('sales.create_sale') }}" class="card p-3 mb-3">
+    {{ form.hidden_tag() }}
+    <div class="row g-2">
+        <div class="col-md-3">{{ form.product_id(class="form-control", placeholder="Product ID (from Inventory)") }}</div>
+        <div class="col-md-3">{{ form.date(class="form-control") }}</div>
+        <div class="col-md-3">{{ form.quantity(class="form-control", placeholder="Quantity") }}</div>
+        <div class="col-md-3">{{ form.price(class="form-control", placeholder="Price") }}</div>
+    </div>
+    <div class="row g-2 mt-2">
+        <div class="col-md-3">{{ form.bank_invoice_no(class="form-control", placeholder="Bank Invoice No") }}</div>
+        <div class="col-md-3">{{ form.invoice_image(class="form-control", placeholder="Invoice Image Path/URL") }}</div>
+        <div class="col-md-2">{{ form.status(class="form-select") }}</div>
+        <div class="col-md-2">{{ form.sales_rep(class="form-control", placeholder="Sales Rep") }}</div>
+        <div class="col-md-2">{{ form.deduction(class="form-control", placeholder="Deduction") }}</div>
+    </div>
+    <div class="row g-2 mt-2">
+        <div class="col-md-3">{{ form.ha_receipt_number(class="form-control", placeholder="H/A Receipt Number") }}</div>
+        <div class="col-md-3">{{ form.deposited_account_number(class="form-control", placeholder="Deposited Account Number") }}</div>
+        <div class="col-md-6">{{ form.description(class="form-control", rows=2, placeholder="Description") }}</div>
+    </div>
+    <div class="mt-2 d-flex gap-2">
+        <button class="btn btn-success">{{ "Update Sale" if editing else "Save Sale" }}</button>
+        {% if editing %}
+        <a class="btn btn-outline-secondary" href="{{ url_for('sales.sales_page') }}">Cancel Edit</a>
+        {% endif %}
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped js-data-table">
+        <thead>
+            <tr>
+                <th>Product ID</th><th>Date</th><th>Item</th><th>Brand</th><th>Qty</th><th>Price</th><th>Total</th><th>Status</th><th>Sales Rep</th><th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for s in sales_rows %}
+            <tr>
+                <td>{{ s.product_id }}</td>
+                <td>{{ s.date|et_date }}</td>
+                <td>{{ s.item_type }}</td>
+                <td>{{ s.brand }}</td>
+                <td>{{ s.quantity }}</td>
+                <td>{{ s.price|etb }}</td>
+                <td>{{ s.total_amount|etb }}</td>
+                <td>
+                    <span class="badge {{ 'text-bg-success' if s.status == 'Yes' else 'text-bg-danger' }}">
+                        {{ '1 = Yes' if s.status == 'Yes' else '2 = No' }}
+                    </span>
+                </td>
+                <td>{{ s.sales_rep }}</td>
+                <td class="d-flex gap-1">
+                    <a class="btn btn-sm btn-outline-primary" href="{{ url_for('sales.edit_sale_page', product_id=s.product_id) }}">Edit</a>
+                    <form method="post" action="{{ url_for('sales.delete_sale', product_id=s.product_id) }}" onsubmit="return confirm('Delete sale?')">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

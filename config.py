@@ -4,7 +4,15 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 INSTANCE_DIR = BASE_DIR / "instance"
-INSTANCE_DIR.mkdir(parents=True, exist_ok=True)
+
+# Only try to create instance dir if running in development (not as .exe)
+# When running as .exe, run.py sets the database path to AppData
+import sys
+if not getattr(sys, 'frozen', False):
+    try:
+        INSTANCE_DIR.mkdir(parents=True, exist_ok=True)
+    except PermissionError:
+        pass
 
 
 class Config:

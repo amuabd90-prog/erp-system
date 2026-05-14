@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Financial Reports & Tax</h4>
+<div class="mb-3">
+    <a class="btn btn-outline-success btn-sm" href="{{ url_for('reports.export_excel') }}">Export Excel</a>
+    <a class="btn btn-outline-danger btn-sm" href="{{ url_for('reports.export_pdf') }}">Export PDF</a>
+    <a class="btn btn-outline-dark btn-sm" href="{{ url_for('reports.tax_summary_print') }}" target="_blank">Tax Summary Print</a>
+    <button class="btn btn-outline-secondary btn-sm" onclick="window.print()">Print</button>
+</div>
+<form method="post" action="{{ url_for('reports.update_cogs', cogs_id=editing_cogs.id) if editing_cogs else url_for('reports.create_cogs') }}" class="card p-3 mb-3">
+    {{ cogs_form.hidden_tag() }}
+    <div class="row g-2">
+        <div class="col">{{ cogs_form.date(class="form-control") }}</div>
+        <div class="col">{{ cogs_form.item(class="form-control", placeholder="Item") }}</div>
+        <div class="col">{{ cogs_form.brand(class="form-control", placeholder="Brand") }}</div>
+        <div class="col">{{ cogs_form.purchasing_cost(class="form-control", placeholder="Purchasing Face") }}</div>
+        <div class="col">{{ cogs_form.purchasing_cost_under_value(class="form-control", placeholder="Under Value") }}</div>
+        <div class="col">{{ cogs_form.shipping_cost(class="form-control", placeholder="Shipping") }}</div>
+        <div class="col">{{ cogs_form.tariff(class="form-control", placeholder="Tariff") }}</div>
+        <div class="col">{{ cogs_form.transportation_cost(class="form-control", placeholder="Transport") }}</div>
+    </div>
+    <div class="mt-2 d-flex gap-2">
+        <button class="btn btn-primary">{{ "Update COGS" if editing_cogs else "Save COGS" }}</button>
+        {% if editing_cogs %}
+        <a href="{{ url_for('reports.index') }}" class="btn btn-outline-secondary">Cancel Edit</a>
+        {% endif %}
+    </div>
+</form>
+<form method="post" action="{{ url_for('reports.recalculate_tax') }}">
+    <button class="btn btn-danger mb-3">Recalculate Tax</button>
+</form>
+
+<h6>Cost Of Goods</h6>
+<div class="table-responsive">
+    <table class="table table-striped js-data-table">
+        <thead><tr><th>Date</th><th>Item</th><th>Brand</th><th>Total Face Value</th><th>Total Under Value</th><th>Actions</th></tr></thead>
+        <tbody>
+        {% for c in cogs_rows %}
+        <tr>
+            <td>{{ c.date|et_date }}</td>
+            <td>{{ c.item }}</td>
+            <td>{{ c.brand }}</td>
+            <td>{{ c.total_cost_face_value|etb }}</td>
+            <td>{{ c.total_cost_under_value|etb }}</td>
+            <td>
+                <a class="btn btn-sm btn-outline-primary" href="{{ url_for('reports.edit_cogs', cogs_id=c.id) }}">Edit</a>
+                <form method="post" action="{{ url_for('reports.delete_cogs', cogs_id=c.id) }}" onsubmit="return confirm('Delete COGS row?')">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h6>Sales Report</h6>
+<div class="table-responsive">
+    <table class="table table-bordered js-data-table">
+        <thead><tr><th>Date</th><th>Product ID</th><th>Item</th><th>Total Sale</th><th>Status</th><th>H/A Receipt</th><th>Account</th></tr></thead>
+        <tbody>
+        {% for s in sales_rows %}
+        <tr>
+            <td>{{ s.date|et_date }}</td><td>{{ s.product_id }}</td><td>{{ s.item }}</td><td>{{ s.total_sale|etb }}</td><td>{{ s.status }}</td><td>{{ s.ha_receipt_number }}</td><td>{{ s.deposited_account_number }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h6>Expense Report</h6>
+<div class="table-responsive">
+    <table class="table table-bordered js-data-table">
+        <thead><tr><th>Date</th><th>Total Expenses</th></tr></thead>
+        <tbody>{% for e in expense_rows %}<tr><td>{{ e.date|et_date }}</td><td>{{ e.total_expenses|etb }}</td></tr>{% endfor %}</tbody>
+    </table>
+</div>
+
+<h6>Profit Tax Report</h6>
+<div class="table-responsive"><table class="table js-data-table"><tr><th>Date</th><th>Total Profit</th><th>VAT 15%</th><th>Profit Tax</th><th>Total Tax Payable</th></tr>{% for t in tax_rows %}<tr><td>{{t.date|et_date}}</td><td>{{t.total_profit|etb}}</td><td>{{t.vat_15|etb}}</td><td>{{t.profit_tax|etb}}</td><td>{{t.total_tax_payable|etb}}</td></tr>{% endfor %}</table></div>
+{% endblock %}

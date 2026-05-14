@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Warehouse Management</h4>
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card p-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6>Stock In</h6>
+            </div>
+            <form method="post" action="{{ url_for('warehouse.create_stockin') }}">
+                {{ form_in.hidden_tag() }}
+                <div class="row g-2">
+                    <div class="col">{{ form_in.inventory_no(class="form-control", placeholder="Inventory No") }}</div>
+                    <div class="col">{{ form_in.item(class="form-control", placeholder="Item") }}</div>
+                    <div class="col">{{ form_in.brand(class="form-control", placeholder="Brand") }}</div>
+                </div>
+                <div class="row g-2 mt-2">
+                    <div class="col">{{ form_in.pieces(class="form-control", placeholder="Pieces") }}</div>
+                    <div class="col">{{ form_in.price(class="form-control", placeholder="Price") }}</div>
+                    <div class="col">{{ form_in.date_added(class="form-control") }}</div>
+                </div>
+                <button class="btn btn-primary mt-2">Save</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <form method="post" action="{{ url_for('warehouse.create_stockout') }}" class="card p-3">
+            {{ form_out.hidden_tag() }}
+            <h6>Stock Out</h6>
+            <div class="mb-2">{{ form_out.inventory_no(class="form-control", placeholder="Inventory No") }}</div>
+            <div class="mb-2">{{ form_out.date(class="form-control") }}</div>
+            <button class="btn btn-warning">Move to Showroom</button>
+        </form>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-4">
+        <h5>Stock Table</h5>
+    </div>
+    <div class="col-md-8 text-end">
+        <div class="btn-group" role="group">
+            <a href="{{ url_for('warehouse.export_stock') }}" class="btn btn-success btn-sm">
+                <i class="fas fa-download"></i> Export Stock
+            </a>
+            <a href="{{ url_for('warehouse.export_stock_in') }}" class="btn btn-success btn-sm">
+                <i class="fas fa-download"></i> Export Stock In
+            </a>
+            <a href="{{ url_for('warehouse.export_stock_out') }}" class="btn btn-success btn-sm">
+                <i class="fas fa-download"></i> Export Stock Out
+            </a>
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Inventory No</th>
+                <th>Item</th>
+                <th>Brand</th>
+                <th>Color</th>
+                <th>Size</th>
+                <th>Pieces</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in stock %}
+            <tr>
+                <td><code>{{ r.inventory_no }}</code></td>
+                <td>{{ r.item }}</td>
+                <td>{{ r.brand }}</td>
+                <td>{{ r.color or '-' }}</td>
+                <td>{{ r.size or '-' }}</td>
+                <td>{{ r.pieces }}</td>
+                <td>{{ r.price | etb }}</td>
+                <td>
+                    {% if r.status == 'Yes' %}
+                        <span class="badge bg-success">{{ r.status }}</span>
+                    {% else %}
+                        <span class="badge bg-secondary">{{ r.status }}</span>
+                    {% endif %}
+                </td>
+                <td>{{ r.date_added.strftime('%Y-%m-%d') if r.date_added else '-' }}</td>
+                <td>
+                    {% if r.status == 'Yes' %}
+                    <form method="post" action="{{ url_for('warehouse.delete_stockout', stockout_id=r.stock_out[0].id) }}" style="display:inline;">
+                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to revert this stock out?')" title="Revert Stock Out">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                    </form>
+                    {% else %}
+                    <form method="post" action="{{ url_for('warehouse.delete_stockin', inventory_no=r.inventory_no) }}" style="display:inline;">
+                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this stock entry?')">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

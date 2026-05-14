@@ -6,10 +6,9 @@ import sys
 # --- Configuration ---
 APP_NAME = "AmanaERP"
 ENTRY_SCRIPT = "run.py"
-ICON_FILE = "static/icon.ico"  # Placeholder, you should create this file
+ICON_FILE = "static/icon.ico"
 
 # --- Helper Functions ---
-
 def clean():
     """Remove previous build artifacts."""
     print("--- Cleaning previous build files ---")
@@ -26,37 +25,32 @@ def clean():
 def build():
     """Run PyInstaller to build the executable."""
     print("--- Starting PyInstaller build process ---")
-
-    # PyInstaller command arguments
+    
     pyinstaller_command = [
         'pyinstaller',
         '--name', APP_NAME,
-        '--noconfirm',      # Overwrite output directory without asking
-        '--windowed',       # Create a windowed app (no console)
-        '--onedir',         # Create a one-folder bundle
-        
-        # Add data files - templates and static assets
-        # The format is 'source;destination'
+        '--noconfirm',
+        '--noconsole',
+        '--onedir',
         '--add-data', f'templates{os.pathsep}templates',
         '--add-data', f'static{os.pathsep}static',
-        
-        # Add any other required data, like a config file if it's not imported
-        # '--add-data', f'config.py{os.pathsep}.',
+        '--hidden-import', 'waitress',
+        '--hidden-import', 'flask',
+        '--hidden-import', 'flask_login',
+        '--hidden-import', 'flask_sqlalchemy',
+        '--hidden-import', 'sqlalchemy',
     ]
 
-    # Add an icon if it exists
     if os.path.exists(ICON_FILE):
         pyinstaller_command.extend(['--icon', ICON_FILE])
     else:
         print(f"NOTE: Icon file not found at '{ICON_FILE}'. The executable will have a default icon.")
 
-    # Add the main entry script
     pyinstaller_command.append(ENTRY_SCRIPT)
-    
+
     print(f"Running command: {' '.join(pyinstaller_command)}")
-    
+
     try:
-        # Run the command
         subprocess.check_call(pyinstaller_command)
         print("\n✓ PyInstaller build completed successfully!")
         print(f"Find the application in the 'dist/{APP_NAME}' folder.")
@@ -69,10 +63,6 @@ def build():
         print("Please ensure PyInstaller is installed in your environment: pip install pyinstaller", file=sys.stderr)
         sys.exit(1)
 
-
 if __name__ == "__main__":
-    # 1. Clean previous builds
     clean()
-    
-    # 2. Build the executable
     build()

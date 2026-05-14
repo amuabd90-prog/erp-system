@@ -1,5 +1,5 @@
-('C:\\Users\\H & '
- 'A\\Desktop\\ha_business_management_system\\build\\AmanaERP\\PYZ-00.pyz',
+('C:\\Users\\H & A\\Desktop\\backup '
+ 'app\\ha_business_management_system\\build\\AmanaERP\\PYZ-00.pyz',
  [('PIL',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\PIL\\__init__.py',
@@ -472,6 +472,10 @@
    'C:\\Users\\H & '
    'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\annotationlib.py',
    'PYMODULE'),
+  ('app',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\app.py',
+   'PYMODULE'),
   ('argparse',
    'C:\\Users\\H & '
    'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\argparse.py',
@@ -612,7 +616,8 @@
    'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\asyncio\\windows_utils.py',
    'PYMODULE'),
   ('auth',
-   'C:\\Users\\H & A\\Desktop\\ha_business_management_system\\auth.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\auth.py',
    'PYMODULE'),
   ('base64',
    'C:\\Users\\H & '
@@ -835,7 +840,8 @@
    'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\concurrent\\interpreters\\_queues.py',
    'PYMODULE'),
   ('config',
-   'C:\\Users\\H & A\\Desktop\\ha_business_management_system\\config.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\config.py',
    'PYMODULE'),
   ('configparser',
    'C:\\Users\\H & '
@@ -1071,7 +1077,8 @@
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\et_xmlfile\\xmlfile.py',
    'PYMODULE'),
   ('export_utils',
-   'C:\\Users\\H & A\\Desktop\\ha_business_management_system\\export_utils.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\export_utils.py',
    'PYMODULE'),
   ('fileinput',
    'C:\\Users\\H & '
@@ -1275,7 +1282,8 @@
    'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\fnmatch.py',
    'PYMODULE'),
   ('forms',
-   'C:\\Users\\H & A\\Desktop\\ha_business_management_system\\forms.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\forms.py',
    'PYMODULE'),
   ('fractions',
    'C:\\Users\\H & '
@@ -1598,7 +1606,8 @@
    'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\mimetypes.py',
    'PYMODULE'),
   ('models',
-   'C:\\Users\\H & A\\Desktop\\ha_business_management_system\\models.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\models.py',
    'PYMODULE'),
   ('multiprocessing',
    'C:\\Users\\H & '
@@ -2960,6 +2969,10 @@
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\openpyxl\\xml\\functions.py',
    'PYMODULE'),
+  ('optparse',
+   'C:\\Users\\H & '
+   'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\optparse.py',
+   'PYMODULE'),
   ('packaging',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\packaging\\__init__.py',
@@ -4167,6 +4180,14 @@
    'C:\\Users\\H & '
    'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\pprint.py',
    'PYMODULE'),
+  ('profile',
+   'C:\\Users\\H & '
+   'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\profile.py',
+   'PYMODULE'),
+  ('pstats',
+   'C:\\Users\\H & '
+   'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\pstats.py',
+   'PYMODULE'),
   ('py_compile',
    'C:\\Users\\H & '
    'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\py_compile.py',
@@ -4592,53 +4613,56 @@
    'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\rlcompleter.py',
    'PYMODULE'),
   ('routes',
-   'C:\\Users\\H & '
-   'A\\Desktop\\ha_business_management_system\\routes\\__init__.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\__init__.py',
    'PYMODULE'),
   ('routes.admin',
-   'C:\\Users\\H & A\\Desktop\\ha_business_management_system\\routes\\admin.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\admin.py',
    'PYMODULE'),
   ('routes.admin_audit',
-   'C:\\Users\\H & '
-   'A\\Desktop\\ha_business_management_system\\routes\\admin_audit.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\admin_audit.py',
    'PYMODULE'),
   ('routes.api_validation',
-   'C:\\Users\\H & '
-   'A\\Desktop\\ha_business_management_system\\routes\\api_validation.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\api_validation.py',
    'PYMODULE'),
   ('routes.bank_recon',
-   'C:\\Users\\H & '
-   'A\\Desktop\\ha_business_management_system\\routes\\bank_recon.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\bank_recon.py',
    'PYMODULE'),
   ('routes.dashboard',
-   'C:\\Users\\H & '
-   'A\\Desktop\\ha_business_management_system\\routes\\dashboard.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\dashboard.py',
    'PYMODULE'),
   ('routes.expenses',
-   'C:\\Users\\H & '
-   'A\\Desktop\\ha_business_management_system\\routes\\expenses.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\expenses.py',
    'PYMODULE'),
   ('routes.reconciliation',
-   'C:\\Users\\H & '
-   'A\\Desktop\\ha_business_management_system\\routes\\reconciliation.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\reconciliation.py',
    'PYMODULE'),
   ('routes.reports',
-   'C:\\Users\\H & '
-   'A\\Desktop\\ha_business_management_system\\routes\\reports.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\reports.py',
    'PYMODULE'),
   ('routes.sales',
-   'C:\\Users\\H & A\\Desktop\\ha_business_management_system\\routes\\sales.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\sales.py',
    'PYMODULE'),
   ('routes.setup',
-   'C:\\Users\\H & A\\Desktop\\ha_business_management_system\\routes\\setup.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\setup.py',
    'PYMODULE'),
   ('routes.telegram',
-   'C:\\Users\\H & '
-   'A\\Desktop\\ha_business_management_system\\routes\\telegram.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\telegram.py',
    'PYMODULE'),
   ('routes.warehouse',
-   'C:\\Users\\H & '
-   'A\\Desktop\\ha_business_management_system\\routes\\warehouse.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\routes\\warehouse.py',
    'PYMODULE'),
   ('runpy',
    'C:\\Users\\H & '
@@ -6238,13 +6262,71 @@
    'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\urllib\\response.py',
    'PYMODULE'),
   ('utils',
-   'C:\\Users\\H & A\\Desktop\\ha_business_management_system\\utils.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\utils.py',
    'PYMODULE'),
   ('uuid',
    'C:\\Users\\H & A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\uuid.py',
    'PYMODULE'),
   ('validators',
-   'C:\\Users\\H & A\\Desktop\\ha_business_management_system\\validators.py',
+   'C:\\Users\\H & A\\Desktop\\backup '
+   'app\\ha_business_management_system\\validators.py',
+   'PYMODULE'),
+  ('waitress',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\__init__.py',
+   'PYMODULE'),
+  ('waitress.adjustments',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\adjustments.py',
+   'PYMODULE'),
+  ('waitress.buffers',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\buffers.py',
+   'PYMODULE'),
+  ('waitress.channel',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\channel.py',
+   'PYMODULE'),
+  ('waitress.compat',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\compat.py',
+   'PYMODULE'),
+  ('waitress.parser',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\parser.py',
+   'PYMODULE'),
+  ('waitress.proxy_headers',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\proxy_headers.py',
+   'PYMODULE'),
+  ('waitress.receiver',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\receiver.py',
+   'PYMODULE'),
+  ('waitress.rfc7230',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\rfc7230.py',
+   'PYMODULE'),
+  ('waitress.server',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\server.py',
+   'PYMODULE'),
+  ('waitress.task',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\task.py',
+   'PYMODULE'),
+  ('waitress.trigger',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\trigger.py',
+   'PYMODULE'),
+  ('waitress.utilities',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\utilities.py',
+   'PYMODULE'),
+  ('waitress.wasyncore',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\waitress\\wasyncore.py',
    'PYMODULE'),
   ('webbrowser',
    'C:\\Users\\H & '

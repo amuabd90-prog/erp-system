@@ -1,0 +1,14 @@
+body { overflow-x: hidden; }
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #1f2937;
+}
+.sidebar a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin: 6px 0;
+}
+.main-content { background: #f8fafc; min-height: 100vh; }
+[data-bs-theme="dark"] .main-content { background: #111827; color: #f9fafb; }

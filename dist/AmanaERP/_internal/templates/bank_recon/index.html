@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Bank Reconciliation</h4>
+<form method="post" action="{{ url_for('bank_recon.sync') }}">
+    <button class="btn btn-primary mb-3">Sync Reconciliation Data</button>
+</form>
+{% if sales_alerts %}
+<div class="alert alert-warning">Mismatch warning for product IDs: {{ sales_alerts|join(', ') }}</div>
+<script>window.setTimeout(function(){ alert("Account validation warning: " + {{ sales_alerts|join(', ')|tojson }}); }, 200);</script>
+{% endif %}
+<h6>Sales</h6>
+<div class="table-responsive"><table class="table js-data-table"><tr><th>Date</th><th>Product ID</th><th>Bank Invoice</th><th>Account</th></tr>{% for s in sales_rows %}<tr><td>{{s.date|et_date}}</td><td>{{s.product_id}}</td><td>{{s.bank_invoice_no}}</td><td>{{s.deposited_account_number}}</td></tr>{% endfor %}</table></div>
+<h6>Expenses</h6>
+<div class="table-responsive"><table class="table js-data-table"><tr><th>Date</th><th>Reason</th><th>Amount</th><th>Invoice</th></tr>{% for e in expense_rows %}<tr><td>{{e.date|et_date}}</td><td>{{e.reasons}}</td><td>{{e.amount|etb}}</td><td>{{e.bank_invoice_no}}</td></tr>{% endfor %}</table></div>
+{% endblock %}
