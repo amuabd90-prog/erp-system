@@ -645,6 +645,10 @@
   ('bz2',
    'C:\\Users\\H & A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\bz2.py',
    'PYMODULE'),
+  ('cProfile',
+   'C:\\Users\\H & '
+   'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\cProfile.py',
+   'PYMODULE'),
   ('calendar',
    'C:\\Users\\H & '
    'A\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\calendar.py',
@@ -5295,6 +5299,10 @@
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\mssql\\json.py',
    'PYMODULE'),
+  ('sqlalchemy.dialects.mssql.provision',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\mssql\\provision.py',
+   'PYMODULE'),
   ('sqlalchemy.dialects.mssql.pymssql',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\mssql\\pymssql.py',
@@ -5355,6 +5363,10 @@
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\mysql\\mysqldb.py',
    'PYMODULE'),
+  ('sqlalchemy.dialects.mysql.provision',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\mysql\\provision.py',
+   'PYMODULE'),
   ('sqlalchemy.dialects.mysql.pymysql',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\mysql\\pymysql.py',
@@ -5394,6 +5406,10 @@
   ('sqlalchemy.dialects.oracle.oracledb',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\oracle\\oracledb.py',
+   'PYMODULE'),
+  ('sqlalchemy.dialects.oracle.provision',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\oracle\\provision.py',
    'PYMODULE'),
   ('sqlalchemy.dialects.oracle.types',
    'C:\\Users\\H & '
@@ -5455,6 +5471,10 @@
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\pg_catalog.py',
    'PYMODULE'),
+  ('sqlalchemy.dialects.postgresql.provision',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\provision.py',
+   'PYMODULE'),
   ('sqlalchemy.dialects.postgresql.psycopg',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\psycopg.py',
@@ -5494,6 +5514,10 @@
   ('sqlalchemy.dialects.sqlite.json',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\sqlite\\json.py',
+   'PYMODULE'),
+  ('sqlalchemy.dialects.sqlite.provision',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\sqlite\\provision.py',
    'PYMODULE'),
   ('sqlalchemy.dialects.sqlite.pysqlcipher',
    'C:\\Users\\H & '
@@ -5567,6 +5591,10 @@
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\row.py',
    'PYMODULE'),
+  ('sqlalchemy.engine.strategies',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\strategies.py',
+   'PYMODULE'),
   ('sqlalchemy.engine.url',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\url.py',
@@ -5599,6 +5627,10 @@
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\event\\registry.py',
    'PYMODULE'),
+  ('sqlalchemy.events',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\events.py',
+   'PYMODULE'),
   ('sqlalchemy.exc',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\exc.py',
@@ -5606,6 +5638,10 @@
   ('sqlalchemy.ext',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\__init__.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.associationproxy',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\associationproxy.py',
    'PYMODULE'),
   ('sqlalchemy.ext.asyncio',
    'C:\\Users\\H & '
@@ -5635,6 +5671,10 @@
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\asyncio\\session.py',
    'PYMODULE'),
+  ('sqlalchemy.ext.automap',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\automap.py',
+   'PYMODULE'),
   ('sqlalchemy.ext.baked',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\baked.py',
@@ -5642,6 +5682,70 @@
   ('sqlalchemy.ext.compiler',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\compiler.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.declarative',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\declarative\\__init__.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.declarative.extensions',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\declarative\\extensions.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.horizontal_shard',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\horizontal_shard.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.hybrid',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\hybrid.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.indexable',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\indexable.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.instrumentation',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\instrumentation.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.mutable',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\mutable.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.mypy',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\mypy\\__init__.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.mypy.apply',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\mypy\\apply.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.mypy.decl_class',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\mypy\\decl_class.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.mypy.infer',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\mypy\\infer.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.mypy.names',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\mypy\\names.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.mypy.plugin',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\mypy\\plugin.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.mypy.util',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\mypy\\util.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.orderinglist',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\orderinglist.py',
+   'PYMODULE'),
+  ('sqlalchemy.ext.serializer',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\ext\\serializer.py',
    'PYMODULE'),
   ('sqlalchemy.future',
    'C:\\Users\\H & '
@@ -5955,6 +6059,158 @@
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\sql\\visitors.py',
    'PYMODULE'),
+  ('sqlalchemy.testing',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\__init__.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.assertions',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\assertions.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.assertsql',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\assertsql.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.asyncio',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\asyncio.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.config',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\config.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.engines',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\engines.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.entities',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\entities.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.exclusions',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\exclusions.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.fixtures',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\fixtures\\__init__.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.fixtures.base',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\fixtures\\base.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.fixtures.mypy',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\fixtures\\mypy.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.fixtures.orm',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\fixtures\\orm.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.fixtures.sql',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\fixtures\\sql.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.pickleable',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\pickleable.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.plugin',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\plugin\\__init__.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.plugin.bootstrap',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\plugin\\bootstrap.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.plugin.plugin_base',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\plugin\\plugin_base.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.plugin.pytestplugin',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\plugin\\pytestplugin.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.profiling',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\profiling.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.provision',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\provision.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.requirements',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\requirements.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.schema',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\schema.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\__init__.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_cte',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_cte.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_ddl',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_ddl.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_deprecations',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_deprecations.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_dialect',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_dialect.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_insert',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_insert.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_reflection',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_reflection.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_results',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_results.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_rowcount',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_rowcount.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_select',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_select.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_sequence',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_sequence.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_types',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_types.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_unicode_ddl',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_unicode_ddl.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.suite.test_update_delete',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\suite\\test_update_delete.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.util',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\util.py',
+   'PYMODULE'),
+  ('sqlalchemy.testing.warnings',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\testing\\warnings.py',
+   'PYMODULE'),
   ('sqlalchemy.types',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\types.py',
@@ -6002,6 +6258,10 @@
   ('sqlalchemy.util.queue',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\queue.py',
+   'PYMODULE'),
+  ('sqlalchemy.util.tool_support',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\tool_support.py',
    'PYMODULE'),
   ('sqlalchemy.util.topological',
    'C:\\Users\\H & '

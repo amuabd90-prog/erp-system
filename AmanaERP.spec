@@ -1,12 +1,21 @@
 # -*- mode: python ; coding: utf-8 -*-
+from PyInstaller.utils.hooks import collect_all
+from PyInstaller.utils.hooks import copy_metadata
+
+datas = [('templates', 'templates'), ('static', 'static')]
+binaries = []
+hiddenimports = ['waitress', 'flask', 'flask_login', 'flask_sqlalchemy', 'sqlalchemy', 'sqlite3']
+datas += copy_metadata('sqlalchemy')
+tmp_ret = collect_all('sqlalchemy')
+datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
 
 a = Analysis(
     ['run.py'],
     pathex=[],
-    binaries=[],
-    datas=[('templates', 'templates'), ('static', 'static')],
-    hiddenimports=['waitress', 'flask', 'flask_login', 'flask_sqlalchemy', 'sqlalchemy'],
+    binaries=binaries,
+    datas=datas,
+    hiddenimports=hiddenimports,
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

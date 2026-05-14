@@ -62,10 +62,6 @@
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
    'PYSOURCE'),
-  ('pyi_rth_setuptools',
-   'C:\\Users\\H & '
-   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_setuptools.py',
-   'PYSOURCE'),
   ('pyi_rth_pkgutil',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgutil.py',
@@ -73,6 +69,10 @@
   ('pyi_rth_inspect',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
+   'PYSOURCE'),
+  ('pyi_rth_setuptools',
+   'C:\\Users\\H & '
+   'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_setuptools.py',
    'PYSOURCE'),
   ('pyi_rth_multiprocessing',
    'C:\\Users\\H & '
@@ -85,7 +85,7 @@
  [],
  False,
  False,
- 1778743234,
+ 1778744993,
  [('runw.exe',
    'C:\\Users\\H & '
    'A\\Desktop\\ha_business_management_system\\.venv\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\runw.exe',

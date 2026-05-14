@@ -39,6 +39,9 @@ def build():
         '--hidden-import', 'flask_login',
         '--hidden-import', 'flask_sqlalchemy',
         '--hidden-import', 'sqlalchemy',
+        '--hidden-import', 'sqlite3',
+        '--collect-all', 'sqlalchemy',
+        '--copy-metadata', 'sqlalchemy',
     ]
 
     if os.path.exists(ICON_FILE):
